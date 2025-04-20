@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         CHROME_DRIVER_PATH = 'C:\\path\\to\\chromedriver.exe'
-        JMETER_PATH = 'C:\\path\\to\\apache-jmeter-5.5\\bin'
+        JMETER_PATH = 'C:\\JMeter\\apache-jmeter-5.6.3\\bin'
     }
 
     stages {
