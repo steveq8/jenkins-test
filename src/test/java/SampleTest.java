@@ -7,7 +7,7 @@ public class SampleTest {
     @Test
     public void testGoogleSearch() {
         // ✅ Update the path to the actual location of your ChromeDriver
-        System.setProperty("webdriver.chrome.driver", "C:\WebDrivers\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver.exe");
 
         // Start the browser
         WebDriver driver = new ChromeDriver();
