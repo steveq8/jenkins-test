@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.8.6'
-        jdk 'Java 11'
+        maven 'Maven-3.9.9'
+        jdk 'JDK-17'
     }
 
     environment {
@@ -14,7 +14,13 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/youruser/your-repo.git'
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/steveq8/jenkins-test.git',
+                        credentialsId: 'github-token'
+                    ]]
+                ])
             }
         }
 
@@ -26,7 +32,7 @@ pipeline {
 
         stage('Run Web Tests') {
             steps {
-                bat "mvn test"
+                bat 'mvn test'
             }
         }
 
@@ -36,7 +42,10 @@ pipeline {
                 publishHTML([
                     reportDir: 'target/surefire-reports',
                     reportFiles: 'index.html',
-                    reportName: 'HTML Test Report'
+                    reportName: 'HTML Test Report',
+                    keepAll: true,
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true
                 ])
             }
         }
@@ -52,7 +61,10 @@ pipeline {
                 publishHTML([
                     reportDir: 'jmeter-report',
                     reportFiles: 'index.html',
-                    reportName: 'JMeter Report'
+                    reportName: 'JMeter Load Test Report',
+                    keepAll: true,
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true
                 ])
             }
         }
