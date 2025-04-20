@@ -17,7 +17,7 @@ pipeline {
                 checkout([$class: 'GitSCM',
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[
-                        url: 'https://github.com/youruser/your-repo.git',
+                        url: 'https://github.com/steveq8/jenkins-test.git',
                         credentialsId: 'github-token'
                     ]]
                 ])
