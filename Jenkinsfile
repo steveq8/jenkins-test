@@ -14,7 +14,13 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/youruser/your-repo.git'
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/youruser/your-repo.git',
+                        credentialsId: 'github-token'
+                    ]]
+                ])
             }
         }
 
@@ -26,7 +32,7 @@ pipeline {
 
         stage('Run Web Tests') {
             steps {
-                bat "mvn test"
+                bat 'mvn test'
             }
         }
 
