@@ -13,7 +13,7 @@ public class SampleTest {
     @Before
     public void setUp() {
         // Set path to chromedriver.exe if not already in system PATH
-        System.setProperty("webdriver.chrome.driver", "C:\\tools\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\WebDrivers\\chromedriver.exe");;
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless=new"); // Use modern headless mode
