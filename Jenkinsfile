@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.8.6'
+        maven 'Maven-3.9.9'
         jdk 'Java 11'
     }
 
@@ -36,7 +36,10 @@ pipeline {
                 publishHTML([
                     reportDir: 'target/surefire-reports',
                     reportFiles: 'index.html',
-                    reportName: 'HTML Test Report'
+                    reportName: 'HTML Test Report',
+                    keepAll: true,
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true
                 ])
             }
         }
@@ -52,7 +55,10 @@ pipeline {
                 publishHTML([
                     reportDir: 'jmeter-report',
                     reportFiles: 'index.html',
-                    reportName: 'JMeter Report'
+                    reportName: 'JMeter Load Test Report',
+                    keepAll: true,
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true
                 ])
             }
         }
